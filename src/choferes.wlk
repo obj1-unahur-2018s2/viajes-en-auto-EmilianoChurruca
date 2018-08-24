@@ -4,11 +4,11 @@ object roxana {
 	method precioViaje(cliente, kms) { return cliente.precioPactadoPorKm() * kms }
 }
 
-object gabriela{
+object gabriela {
 	method precioViaje(cliente, kms) { return (1.2 *  cliente.precioPactadoPorKm()) * kms }
 }
 
-object mariela{
+object mariela {
 	const minimo = 50
 	method precioViaje(cliente, kms) { 
 		if ((cliente.precioPactadoPorKm() * kms) < minimo) { return 50 }
@@ -16,6 +16,12 @@ object mariela{
 	}
 }
 
+object juana { 
+	method precioViaje(cliente, kms) {
+		if (kms < 8) {return 100} 
+		else { return 200}
+	}
+}
 /*
  * Roxana le cobra a cada cliente el precio por kilómetro que pactó con la cooperativa sin variaciones.
 Gabriela le aumenta un 20%, porque su auto de alta gama.
