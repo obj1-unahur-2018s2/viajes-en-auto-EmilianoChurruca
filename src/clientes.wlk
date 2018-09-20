@@ -1,3 +1,17 @@
+class Cliente {
+	var precio = null
+	method precioPactadoPorKm() { return precio}
+	method precioPactado(valor) { precio = valor }
+}
+
+class Cadete {
+	var reemplazoDe = null
+	method reemplazaA (cliente) { reemplazoDe = cliente } 
+	method precioPactadoPorKm() { return reemplazoDe.precioPactadoPorKm()-3}
+}
+
+
+ 
 object ludmila {
 	method precioPactadoPorKm() { return 18}	
 }

@@ -1,5 +1,53 @@
 import clientes.*
 
+class PrecioPactado { 
+	method precioViaje(cliente, kms) { return cliente.precioPactadoPorKm() * kms }
+}
+
+class PorcentajeAumento {
+	var porcentaje = null
+	method porcentajeAumento(valor) { porcentaje = valor}
+	method precioViaje(cliente, kms) { 
+		return ((1 + porcentaje/100) *  cliente.precioPactadoPorKm()) * kms
+	} 
+}
+
+class PrecioMinimo {
+	var minimo = null
+	method definirMinimo(valor) { minimo = valor }
+	method precioViaje(cliente, kms) { (cliente.precioPactadoPorKm() * kms).max(minimo)	}
+} 
+
+class CualquierPrecio {
+	var valorMinimo = null
+	var valorMaximo = null
+	var topeKms = null
+	
+	method minimo(valor) { valorMinimo = valor }
+	method maximo(valor) { valorMaximo = valor }
+	method topeKm(valor) { topeKms = valor}
+	method precioViaje(cliente, kms) { 
+		if ( kms < topeKms) { return valorMinimo }
+			else { return valorMaximo}	
+	 
+}
+
+}
+object oficina { 
+	var primerChofer = null
+	var segundoChofer = null
+	var aux = null
+	method asignarChoferes(chofer1, chofer2) { primerChofer = chofer1  segundoChofer = chofer2  }
+	method cambiarPrimerChoferPor(chofer) { primerChofer = chofer}
+	method cambiarSegundoChoferPor(chofer) { segundoChofer = chofer}
+	method intercambiarChoferes() {
+		aux = primerChofer;
+		primerChofer = segundoChofer;
+		segundoChofer = aux;
+	}
+	method choferElegidoParaViaje(cliente, kms) {}
+}
+
 object roxana {
 	method precioViaje(cliente, kms) { return cliente.precioPactadoPorKm() * kms }
 }
@@ -44,6 +92,7 @@ object oficina {
 	}
 	method choferElegidoParaViaje(cliente, kms) {}
 }
+
 
 /*
  * El objeto oficina debe entender estos mensajes:
